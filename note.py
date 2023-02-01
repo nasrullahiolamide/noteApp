@@ -1,6 +1,17 @@
 #!/usr/bin/python3
 import requests
+import sys
 
+error_msg = """ 
+        Usage: type python3 note.py <command> args
+        
+            For create-note: python3 note.py create-note note-content
+            For update-note: python3 note.py update-note id note-content
+            For delete-note: python3 note.py delete-note id 
+            For fetch-note: python3 note.py fetch-note
+
+        with love from Primo
+                """
 # api
 base_url = "https://63a52acf821953d4f2c41d5e.mockapi.io/api/v1/"
 
@@ -19,6 +30,8 @@ def delete_note(id):
     if response.status_code == 200:
         print('Notes with id {} deleted successfully'.format(id))
         return response.json()
+    elif response.status_code == 404:
+        print('id not found')
     else:
         print('Failed to delete notes')
 
@@ -52,3 +65,26 @@ def get_a_note(id):
     else:
         print('not found')
         print(response.status_code)
+
+def main():
+    if len(sys.argv) >= 2:
+        match sys.argv[1]:
+            case "create-note":
+                create_note(sys.argv[2])
+            
+            case "delete-note":
+                    delete_note(sys.argv[2])
+                
+            case "update-note":
+            
+                update_note(sys.argv[2], sys.argv[3])
+                # except IndexError:
+                #     print(error_msg)
+            
+            case "create-note":
+                create_note(sys.argv[2])
+            
+            case "fetch-note":
+                fetch_notes()
+        
+main()
