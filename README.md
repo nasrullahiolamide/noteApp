@@ -10,7 +10,9 @@ The app consume the api `"https://63a52acf821953d4f2c41d5e.mockapi.io/api/v1/"`
 
 
 ### Usage 
-type python3 note.py <command> args
+- clone the repository to your PC
+- navigate into the directory or open the directory in the terminal
+- type python3 note.py <command> args
         
             For create-note: python3 note.py create-note note-content
             For update-note: python3 note.py update-note id note-content
