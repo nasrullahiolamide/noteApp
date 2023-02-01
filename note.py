@@ -86,5 +86,6 @@ def main():
             
             case "fetch-note":
                 fetch_notes()
-        
-main()
+
+if __name__ == "__main__":
+    main()
